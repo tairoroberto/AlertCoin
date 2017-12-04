@@ -1,0 +1,223 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'io.fabric'
+
+apply from: "$rootDir${File.separatorChar}tools${File.separatorChar}linters.gradle"
+
+apply from: "$rootDir${File.separatorChar}tools${File.separatorChar}coverage.gradle"
+
+apply from: "$rootDir${File.separatorChar}tools${File.separatorChar}tests.gradle"
+
+android {
+
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.trmamobilesolutions.alertcoin"
+
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-frtti -fexceptions"
+            }
+        }
+    }
+
+    signingConfigs {
+        debug {}
+        release {}
+    }
+
+    buildTypes {
+        debug {
+            resValue "bool", "is_release", "false"
+            minifyEnabled false
+            testCoverageEnabled false
+        }
+
+        release {
+            resValue "bool", "is_release", "true"
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            debuggable false
+            testCoverageEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/kotlin',
+                            'src/${variant.dirName}/kotlin',
+                            'build/generated/source/apt/${variant.dirName}']
+
+            jniLibs.srcDirs = ['libs']
+            assets.srcDirs = ['src/main/assets']
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    lintOptions {
+        lintConfig file("$rootProject.rootDir${File.separatorChar}tools${File.separatorChar}linters${File.separatorChar}lint.xml")
+        abortOnError false
+        ignoreWarnings true
+        htmlReport true
+        htmlOutput file("$project.buildDir${File.separatorChar}reports${File.separatorChar}lint${File.separatorChar}lint-report.html")
+        disable 'InvalidPackage'
+    }
+}
+
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked"
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+
+kotlin {
+    experimental {
+        coroutines 'enable'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android support  libs
+    implementation "com.android.support:appcompat-v7:${rootProject.supportLibs}"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
+    implementation "com.android.support:design:${rootProject.supportLibs}"
+    implementation "com.android.support:support-vector-drawable:${rootProject.supportLibs}"
+    implementation "com.android.support:cardview-v7:${rootProject.supportLibs}"
+    implementation "com.google.android:flexbox:0.2.6"
+    implementation "com.android.support:multidex:${rootProject.multidex}"
+
+    // Firebase
+    implementation "com.google.firebase:firebase-core:${rootProject.firebase}"
+    implementation "com.google.firebase:firebase-messaging:${rootProject.firebase}"
+
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.kotlin_version"
+    implementation "org.jetbrains.anko:anko-coroutines:${rootProject.anko_version}"
+    implementation "org.jetbrains.anko:anko-commons:${rootProject.anko_version}"
+    implementation "org.jetbrains.kotlin:kotlin-test-junit:${rootProject.kotlin_version}"
+
+    // Crashlytics
+    implementation("com.crashlytics.sdk.android:crashlytics:${rootProject.crashlytics}@aar") {
+        transitive = true
+    }
+
+    // ReactiveX
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.rxandroid}"
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.rxjava}"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.retrofit}"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+
+    // Gson: Json Converter
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.retrofit}"
+    implementation "com.google.code.gson:gson:${rootProject.gson}"
+
+    // Image libs
+    implementation "com.squareup.picasso:picasso:$picasso"
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
+
+    // Facebook Sthetho for debug conections
+    implementation "com.facebook.stetho:stetho:${rootProject.stetho}"
+    implementation "com.facebook.stetho:stetho-okhttp3:${rootProject.stetho}"
+
+    // Room Database
+    implementation "android.arch.persistence.room:runtime:${rootProject.arch}"
+    implementation "android.arch.persistence.room:rxjava2:${rootProject.arch}"
+    implementation "android.arch.persistence.room:testing:${rootProject.arch}"
+    kapt "android.arch.persistence.room:compiler:${rootProject.arch}"
+
+    // Lifecycle
+    implementation "android.arch.lifecycle:runtime:${rootProject.arch_lifecycle}"
+    implementation "android.arch.lifecycle:extensions:${rootProject.arch}"
+    kapt "android.arch.lifecycle:compiler:${rootProject.arch}"
+
+    // Dependency injection
+    kapt "com.google.dagger:dagger-compiler:$project.dagger"
+    implementation "com.google.dagger:dagger:$rootProject.dagger"
+
+    // Dagger Android
+    kapt "com.google.dagger:dagger-android-processor:$project.dagger"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:${rootProject.timber}"
+
+    // Find bugs
+    implementation 'com.google.code.findbugs:jsr305:3.0.1'
+    implementation('com.google.api-client:google-api-client-android:1.22.0') {
+        exclude module: 'httpclient'
+    }
+
+    // Test libs
+    testImplementation "junit:junit:${rootProject.junit}"
+    androidTestImplementation "com.android.support.test:runner:${rootProject.runner}"
+
+    // Mokito
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:${rootProject.mockito_kotlin}"
+
+    // Hamcrest
+    testImplementation "org.hamcrest:java-hamcrest:${rootProject.hamcrest}"
+
+    // Mockserver for resquest mock
+    testImplementation "com.squareup.okhttp3:mockwebserver:${rootProject.mockwebserver}"
+
+    // Arch Test for Archtecture components test
+    testImplementation("android.arch.core:core-testing:${rootProject.arch}", {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    })
+
+    // Espresso for UI test
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${rootProject.espresso}", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:${rootProject.espresso}", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+    androidTestImplementation("com.android.support.test.espresso:espresso-intents:${rootProject.espresso}", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+    testImplementation "com.android.support.test.espresso:espresso-idling-resource:${rootProject.espresso}"
+    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:2.1.3"
+}
+
+apply plugin: 'com.google.gms.google-services'

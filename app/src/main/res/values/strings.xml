@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Alert Coin</string>
+    <string name="action_settings">Settings</string>
+    <string name="share">share</string>
+    <string name="donate">donate</string>
+
+    <string-array name="suggestions">
+        <item>Walltime</item>
+        <item>CoinBr</item>
+        <item>Foxbit</item>
+        <item>Mercado bitcoin</item>
+    </string-array>
+</resources>

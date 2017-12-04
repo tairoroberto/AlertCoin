@@ -1,0 +1,104 @@
+import java.util.regex.Pattern
+
+//Helper pra incrementar a versão do app
+task updateVersionCode {
+
+    doLast {
+        def gradleFile = file('build.gradle')
+
+        def pattern = Pattern.compile("versionCode (\\d+)")
+        def matcher = pattern.matcher(gradleFile.getText())
+
+        if (!matcher.find()) {
+            println "No versionCode found in build.gradle"
+            return
+        }
+
+        def versionCode = Integer.parseInt(matcher.group(1))
+
+        gradleFile.write(matcher.replaceAll("versionCode " + ++versionCode))
+    }
+}
+final butlerVersion = '1.3.1'
+final butlerPackage = 'com.linkedin.android.testbutler'
+final butlerApkPath = "$rootDir${File.separatorChar}tools${File.separatorChar}testButler${File.separatorChar}test-butler-app-${butlerVersion}.apk"
+final butlerApkURL = "https://bintray.com/linkedin/maven/download_file?file_path=com%2Flinkedin%2Ftestbutler%2Ftest-butler-app%2F${butlerVersion}}%2Ftest-butler-app-${butlerVersion}.apk"
+
+task downloadButlerApk {
+    group "test-butler"
+    description "Verify and downloads the Test Butler APK"
+
+    doLast {
+        logger.info("Verifying if test-butler apk is present")
+
+        def butlerDir = new File(butlerApkPath)
+
+        if (!butlerDir.exists())
+            butlerDir.mkdirs()
+
+        def f = new File(butlerApkPath)
+
+        if (f.exists()) {
+            logger.info("Test butler $butlerApkPath is already downloaded.")
+            return
+        }
+
+        logger.info("Cleaning versions different than $rootProject.ext.testButler")
+        butlerDir.listFiles().each { it.delete() }
+
+        logger.info("Downloading Test-butler apk from: $butlerApkURL")
+        new URL(butlerApkURL).withInputStream { i -> f.withOutputStream { it << i } }
+    }
+}
+
+/**
+ * This task installs the test-butler apk in all emulators if needed
+ */
+task installButlerApk {
+    group "test-butler"
+    description "Install the Test Butler APK on opened emulators"
+
+    doLast {
+        logger.info("Verifying test-butler installation in emulators")
+
+        final adb = "$android.sdkDirectory.absolutePath${File.separatorChar}platform-tools${File.separatorChar}adb"
+        final String[] split = "$adb devices -l".execute().text.split("\\r?\\n")
+
+        split.each {
+            logger.info("Emulator: $it")
+
+            if (it.isEmpty() || !it.startsWith('emulator-'))
+                return;
+
+            final emu = it.split("\\s")[0]
+
+            if ("$adb -s $emu shell pm list packages".execute().text.contains(butlerPackage))
+                return;
+
+            def f = new File(butlerApkPath)
+
+            if (!f.exists())
+                downloadButlerApk.execute()
+
+            final installResult = "$adb -s $emu install $butlerApkPath".execute().text
+
+            if (!installResult.contains("Success"))
+                logger.log(LogLevel.ERROR, "Could not install APK. Install output:\n$installResult")
+            else
+                logger.info("Installed $butlerApkPath in $emu successfully")
+
+            "$adb shell settings put global window_animation_scale 0.0 ".execute()
+            "$adb shell settings put global transition_animation_scale 0.0".execute()
+            "$adb shell settings put global animator_duration_scale 0.0".execute()
+        }
+    }
+}
+
+afterEvaluate { project ->
+    project.android.productFlavors.each { flavor ->
+        project.android.buildTypes.each { type ->
+            tasks["compile${flavor.name.capitalize()}${type.name.capitalize()}Sources"]
+                    .dependsOn('installButlerApk')
+        }
+    }
+}

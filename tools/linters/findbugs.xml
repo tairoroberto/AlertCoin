@@ -1,0 +1,161 @@
+<FindBugsFilter>
+    <Match>
+        <Bug pattern="ME_MUTABLE_ENUM_FIELD"/>
+    </Match>
+    <Match>
+        <Bug pattern="VA_FORMAT_STRING_EXPECTED_MESSAGE_FORMAT_SUPPLIED"/>
+    </Match>
+    <Match>
+        <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
+    </Match>
+    <Match>
+        <Bug pattern="UUF_UNUSED_FIELD"/>
+    </Match>
+    <Match>
+        <Bug pattern="CO_COMPARETO_INCORRECT_FLOATING"/>
+    </Match>
+    <Match>
+        <Bug pattern="GC_UNCHECKED_TYPE_IN_GENERIC_CALL"/>
+    </Match>
+    <Match>
+        <Bug pattern="HE_EQUALS_NO_HASHCODE"/>
+    </Match>
+    <Match>
+        <Bug pattern="HE_HASHCODE_NO_EQUALS"/>
+    </Match>
+    <Match>
+        <Bug pattern="DB_DUPLICATE_BRANCHES"/>
+    </Match>
+    <Match>
+        <Bug pattern="DB_DUPLICATE_SWITCH_CLAUSES"/>
+    </Match>
+    <Match>
+        <Bug pattern="RU_INVOKE_RUN"/>
+    </Match>
+    <Match>
+        <Bug pattern="NM_CLASS_NAMING_CONVENTION"/>
+    </Match>
+    <Match>
+        <Bug pattern="NM_CONFUSING"/>
+    </Match>
+    <Match>
+        <Bug pattern="NM_FIELD_NAMING_CONVENTION"/>
+    </Match>
+    <Match>
+        <Bug pattern="NM_CLASS_NOT_EXCEPTION"/>
+    </Match>
+    <Match>
+        <Bug pattern="NM_METHOD_NAMING_CONVENTION"/>
+    </Match>
+    <Match>
+        <Bug pattern="HSC_HUGE_SHARED_STRING_CONSTANT"/>
+    </Match>
+    <Match>
+        <Bug pattern="SBSC_USE_STRINGBUFFER_CONCATENATION"/>
+    </Match>
+    <Match>
+        <Bug pattern="SIC_INNER_SHOULD_BE_STATIC"/>
+    </Match>
+    <Match>
+        <Bug pattern="NP_ALWAYS_NULL"/>
+    </Match>
+    <Match>
+        <Bug pattern="J2EE_STORE_OF_NON_SERIALIZABLE_OBJECT_INTO_SESSION"/>
+    </Match>
+    <Match>
+        <Bug pattern="ICAST_INT_2_LONG_AS_INSTANT"/>
+    </Match>
+    <Match>
+        <Bug pattern="ICAST_INT_CAST_TO_DOUBLE_PASSED_TO_CEIL"/>
+    </Match>
+    <Match>
+        <Bug pattern="ICAST_INT_CAST_TO_FLOAT_PASSED_TO_ROUND"/>
+    </Match>
+    <Match>
+        <Bug pattern="FI_EMPTY"/>
+    </Match>
+    <Match>
+        <Bug pattern="JCIP_FIELD_ISNT_FINAL_IN_IMMUTABLE_CLASS"/>
+    </Match>
+    <Match>
+        <Bug pattern="PZ_DONT_REUSE_ENTRY_OBJECTS_IN_ITERATORS"/>
+    </Match>
+    <Match>
+        <Bug pattern="RV_NEGATING_RESULT_OF_COMPARETO"/>
+    </Match>
+    <Match>
+        <Bug pattern="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE"/>
+    </Match>
+    <Match>
+        <Bug pattern="DMI_COLLECTIONS_SHOULD_NOT_CONTAIN_THEMSELVES"/>
+    </Match>
+    <Match>
+        <Bug pattern="DMI_DOH"/>
+    </Match>
+    <Match>
+        <Bug pattern="EC_NULL_ARG"/>
+    </Match>
+    <Match>
+        <Bug pattern="EQ_ALWAYS_FALSE"/>
+    </Match>
+    <Match>
+        <Bug pattern="FE_TEST_IF_EQUAL_TO_NOT_A_NUMBER"/>
+    </Match>
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP"/>
+    </Match>
+    <Match>
+        <Bug pattern="MS_SHOULD_BE_FINAL"/>
+    </Match>
+    <Match>
+        <Bug pattern="UPM_UNCALLED_PRIVATE_METHOD"/>
+    </Match>
+    <Match>
+        <Bug pattern="URF_UNREAD_FIELD"/>
+    </Match>
+    <Match>
+        <Bug pattern="FE_FLOATING_POINT_EQUALITY"/>
+    </Match>
+    <Match>
+        <Bug pattern="IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD"/>
+    </Match>
+    <Match>
+        <Bug pattern="ICAST_IDIV_CAST_TO_DOUBLE"/>
+    </Match>
+    <Match>
+        <Bug pattern="UC_USELESS_CONDITION"/>
+    </Match>
+    <Match>
+        <Bug pattern="UC_USELESS_CONDITION_TYPE"/>
+    </Match>
+    <Match>
+        <Bug pattern="UC_USELESS_OBJECT"/>
+    </Match>
+    <Match>
+        <Bug pattern="UC_USELESS_OBJECT_STACK"/>
+    </Match>
+    <Match>
+        <Bug pattern="UC_USELESS_VOID_METHOD"/>
+    </Match>
+    <Match>
+        <Bug pattern="UCF_USELESS_CONTROL_FLOW"/>
+    </Match>
+    <Match>
+        <Bug pattern="UCF_USELESS_CONTROL_FLOW_NEXT_LINE"/>
+    </Match>
+    <Match>
+        <Bug pattern="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD"/>
+    </Match>
+    <Match>
+        <Bug pattern="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD"/>
+    </Match>
+    <Match>
+        <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
+    </Match>
+    <Match>
+        <Bug pattern="NM_WRONG_PACKAGE_INTENTIONAL"/>
+    </Match>
+    <Match>
+        <Bug pattern="BOA_BADLY_OVERRIDDEN_ADAPTER"/>
+    </Match>
+</FindBugsFilter>

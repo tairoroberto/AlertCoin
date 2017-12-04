@@ -1,0 +1,44 @@
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+
+checkstyle {
+    toolVersion = "7.8.2"
+}
+
+task checkstyle(type: Checkstyle) {
+    configFile file("${rootDir}${File.separatorChar}tools${File.separatorChar}linters${File.separatorChar}checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    classpath = files()
+}
+
+task findbugs(type: FindBugs) {
+    ignoreFailures = false
+    effort = "max"
+    reportLevel = "medium"
+    classes = files("$project.buildDir${File.separatorChar}intermediates${File.separatorChar}classes")
+    includeFilter = file("$rootProject.rootDir${File.separatorChar}tools${File.separatorChar}linters${File.separatorChar}findbugs.xml")
+    excludeFilter = file("$rootProject.rootDir${File.separatorChar}tools${File.separatorChar}linters${File.separatorChar}findbugs-exclude.xml")
+
+    source = fileTree('src/main/java/')
+    classpath = files()
+    reports {
+        xml.enabled = false
+        xml.withMessages = true
+        html.enabled = true
+        xml.destination "$project.buildDir${File.separatorChar}reports${File.separatorChar}findbugs${File.separatorChar}findbugs.xml"
+        html.destination "$project.buildDir${File.separatorChar}reports${File.separatorChar}findbugs${File.separatorChar}findbugs.html"
+    }
+}
+
+check.dependsOn 'checkstyle', 'findbugs', 'lint'
+
+afterEvaluate { project ->
+    project.android.productFlavors.each { flavor ->
+        project.android.buildTypes.each { type ->
+            tasks["compile${flavor.name.capitalize()}${type.name.capitalize()}Sources"].dependsOn(['checkstyle', 'findbugs'])
+        }
+    }
+}

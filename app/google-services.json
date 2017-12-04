@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "626228272983",
+    "firebase_url": "https://alert-coin-db90f.firebaseio.com",
+    "project_id": "alert-coin-db90f",
+    "storage_bucket": "alert-coin-db90f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626228272983:android:a55469e3c7b4cdaa",
+        "android_client_info": {
+          "package_name": "com.trmamobilesolutions.alertcoin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626228272983-mr1sm72havi6cdppt8bm6hau9614ogo5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trmamobilesolutions.alertcoin",
+            "certificate_hash": "6fb46e1846b5bc0d45bceb4fa0929a2091549c70"
+          }
+        },
+        {
+          "client_id": "626228272983-nla4fm4r1d7q1958oh1801fa9ns5abpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQjQPUnjupWkq5ifB3NHoogZKUB0Hvvn8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626228272983-nla4fm4r1d7q1958oh1801fa9ns5abpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

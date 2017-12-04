@@ -1,0 +1,72 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    ext.compileSdkVersion = 26
+    ext.buildToolsVersion = '26.0.2'
+    ext.minSdkVersion =  21
+    ext.targetSdkVersion =  26
+    ext.versionCode =  1
+    ext.versionName =  '1.0'
+
+    ext.supportLibs = '27.0.2'
+    ext.constraint_layout = '1.0.2'
+    ext.multidex = '1.0.2'
+
+    ext.crashlytics = '2.8.0'
+    ext.firebase = '11.6.2'
+
+    ext.kotlin_version = '1.2.0'
+    ext.anko_version = '0.10.1'
+
+    ext.gson = '2.8.0'
+    ext.retrofit = '2.3.0'
+    ext.okhttp_urlconnection = '3.2.0'
+    ext.logging_interceptor = '3.4.1'
+    ext.okhttp = '3.7.0'
+
+    ext.rxandroid = '2.0.1'
+    ext.rxjava = '2.1.0'
+
+    ext.dagger = '2.13'
+    ext.stetho = '1.5.0'
+    ext.picasso = '2.5.2'
+
+    ext.junit = '4.12'
+    ext.runner = '0.5'
+    ext.espresso = '3.0.1'
+    ext.arch = "1.0.0"
+    ext.arch_lifecycle = "1.0.3"
+    ext.mockwebserver = "3.8.1"
+    ext.mockito_kotlin = "1.5.0"
+    ext.timber = "4.6.0"
+    ext.hamcrest = "2.0.0.0"
+
+
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+        flatDir { dirs "$rootDir${File.separatorChar}tools" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        classpath 'io.fabric.tools:gradle:1.24.4'
+        classpath 'com.google.gms:google-services:3.1.0'
+
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
