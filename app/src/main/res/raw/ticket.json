@@ -10,6 +10,7 @@
   },
   "exchanges": [
     {
+      "id": 123,
       "name": "ARN",
       "legend": "Arena Bitcoin",
       "last": 42812.36,
@@ -22,6 +23,7 @@
       "trades": 17
     },
     {
+      "id": 1234,
       "name": "B2U",
       "legend": "BitcoinToYou",
       "last": 42399.99,
@@ -34,6 +36,7 @@
       "trades": 226
     },
     {
+      "id": 12345,
       "name": "BIV",
       "legend": "Bitinvest",
       "last": 42699,
@@ -46,6 +49,7 @@
       "trades": 1
     },
     {
+      "id": 1456,
       "name": "FOX",
       "legend": "FoxBit",
       "last": 42400,
@@ -58,6 +62,7 @@
       "trades": 1
     },
     {
+      "id": 1238,
       "name": "WTM",
       "legend": "Walltime",
       "last": 42879,

@@ -1,0 +1,34 @@
+{
+  "id": 123,
+  "name": "Mercado Bitcoin",
+  "color": "fb8072",
+  "url": "https://www.mercadobitcoin.com.br",
+  "url_book": "https://www.mercadobitcoin.com.br/BRLBTC/negociacoes/",
+  "image_logo": "https://www.mercadobitcoin.com.br/static/img/logo/mb-logo.png",
+  "fees": {
+    "in_BRL": [
+      0.0199,
+      2.9
+    ],
+    "in_BTC": [
+      0,
+      0
+    ],
+    "out_BRL": [
+      0.0199,
+      2.9
+    ],
+    "out_BTC": [
+      0,
+      0
+    ],
+    "trade_book": [
+      0.003,
+      0
+    ],
+    "trade_market": [
+      0.007,
+      0
+    ]
+  }
+}

@@ -18,10 +18,11 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import com.trmamobilesolutions.alertcoin.CustomApplication
 import com.trmamobilesolutions.alertcoin.R
 import com.trmamobilesolutions.alertcoin.base.extension.*
 import com.trmamobilesolutions.alertcoin.detail.view.DetailActivity
-import com.trmamobilesolutions.alertcoin.home.model.domain.Job
+import com.trmamobilesolutions.alertcoin.home.model.domain.ExchangesItem
 import com.trmamobilesolutions.alertcoin.home.viewModel.HomeViewModel
 import com.trmamobilesolutions.alertcoin.home.viewModel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_list.*
@@ -36,10 +37,10 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this, ViewModelFactory(context)).get(HomeViewModel::class.java)
+        ViewModelProviders.of(this, ViewModelFactory(activity?.application as CustomApplication, context)).get(HomeViewModel::class.java)
     }
 
-    private var list: List<Job>? = ArrayList()
+    private var list: List<ExchangesItem>? = ArrayList()
     lateinit var adapter: HomeRecyclerAdapter
     private var adapterSearch: ArrayAdapter<String>? = null
     private var suggestions: Array<String>? = null
@@ -101,7 +102,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeResponse() {
-        viewModel.getResponse().observe(this, android.arch.lifecycle.Observer { response -> showJobsList(response) })
+        viewModel.getResponse().observe(this, android.arch.lifecycle.Observer { response -> showJobsList(response?.exchanges) })
     }
 
     private fun observeResponseFromDataBase() {
@@ -126,9 +127,9 @@ class HomeFragment : Fragment() {
         swipeRefreshLayout?.isRefreshing = false
     }
 
-    fun showJobsList(jobs: List<Job>?) {
+    fun showJobsList(exchanges: List<ExchangesItem>?) {
 
-        list = jobs
+        list = exchanges
 
         withoutData?.visibility = GONE
         if (list?.isEmpty() == true) {
@@ -140,13 +141,13 @@ class HomeFragment : Fragment() {
         showProgress(false)
     }
 
-    private fun onItemClick(job: Job, imageView: ImageView) {
+    private fun onItemClick(exchange: ExchangesItem, imageView: ImageView) {
 
         val options: ActivityOptionsCompat = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(context as Activity, Pair.create(imageView, "image"))
 
         val intent = Intent(context, DetailActivity::class.java)
-        intent.putExtra("job", job)
+        intent.putExtra("exchange", exchange)
         context.startActivity(intent, options.toBundle())
     }
 

@@ -13,24 +13,20 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.ShareActionProvider
-import android.text.Html
 import android.transition.ChangeBounds
 import android.view.Menu
 import com.trmamobilesolutions.alertcoin.CustomApplication.Companion.context
 import com.trmamobilesolutions.alertcoin.R
 import com.trmamobilesolutions.alertcoin.base.extension.loadImage
-import com.trmamobilesolutions.alertcoin.base.extension.showSnackBarError
 import com.trmamobilesolutions.alertcoin.detail.viewModel.DetailViewModel
 import com.trmamobilesolutions.alertcoin.detail.viewModel.ViewModelFactory
-import com.trmamobilesolutions.alertcoin.home.model.domain.Job
+import com.trmamobilesolutions.alertcoin.home.model.domain.ExchangesItem
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.browse
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.yesButton
-import java.text.SimpleDateFormat
-import java.util.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -48,11 +44,11 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         imageView.isDrawingCacheEnabled = true
-        val job = intent.getParcelableExtra<Job>("job")
+        val exchange = intent.getParcelableExtra<ExchangesItem>("exchange")
 
-        show(job)
+        show(exchange)
 
-        fab.setOnClickListener { showAlertDialog(job) }
+        fab.setOnClickListener { showAlertDialog(exchange) }
     }
 
     private fun setAnimation() {
@@ -63,39 +59,25 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun showAlertDialog(job: Job) {
+    private fun showAlertDialog(exchange: ExchangesItem) {
         alert {
-            title = "Apply for this job"
-            message = "Position: ${job.position}\n" +
-                    "Company: ${job.company}\n" +
-                    "Created at: ${formatDate(job.date)}"
+            title = "GO for this exchange"
+            message = exchange.name
 
             noButton {}
             yesButton {
-                browse("https://remoteok.io/l/${job.id}")
+                browse("https://remoteok.io/l/${exchange.name}")
             }
 
         }.show()
     }
 
 
-    fun show(job: Job?) {
-        imageView.loadImage(job?.logo, progressImage, true)
+    fun show(exchange: ExchangesItem?) {
+        imageView.loadImage(exchange?.legend, progressImage, true)
 
-        toolbar_layout.title = job?.position
-        textViewName.text = job?.position
-        textViewOverview.text = Html.fromHtml(job?.description)
-        textViewReleaseDate.text = formatDate(job?.date)
-    }
-
-    private fun formatDate(date: String?): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss-SS:SS", Locale.ENGLISH)
-        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
-        return format.format(sdf.parse(date))
-    }
-
-    fun showSnackBarError(msg: String) {
-        showSnackBarError(fab, msg)
+        toolbar_layout.title = exchange?.legend
+        textViewName.text = exchange?.legend
     }
 
 

@@ -1,7 +1,7 @@
 package com.trmamobilesolutions.alertcoin.base.api
 
 
-import com.trmamobilesolutions.alertcoin.home.model.domain.Job
+import com.trmamobilesolutions.alertcoin.home.model.domain.Ticket
 import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,8 +12,8 @@ import retrofit2.http.Path
 interface ApiService {
 
     @GET("remote-dev+engineer+senior+digital-nomad-jobs.json")
-    fun getAll(): Flowable<List<Job>>
+    fun getAll(): Flowable<Ticket>
 
     @GET("{path}")
-    fun search(@Path("path") path: String): Flowable<List<Job>>
+    fun search(@Path("path") path: String): Flowable<Ticket>
 }

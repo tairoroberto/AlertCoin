@@ -12,17 +12,17 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import com.trmamobilesolutions.alertcoin.base.extension.loadImage
-import com.trmamobilesolutions.alertcoin.home.model.domain.Job
 import com.trmamobilesolutions.alertcoin.R
+import com.trmamobilesolutions.alertcoin.base.extension.loadImage
+import com.trmamobilesolutions.alertcoin.home.model.domain.ExchangesItem
 
 
 /**
  * Created by tairo on 12/12/17.
  */
 class HomeRecyclerAdapter(private val context: Context?,
-                          private var list: List<Job>?,
-                          private val onClick: (job: Job, imageView: ImageView) -> Unit) : RecyclerView.Adapter<HomeRecyclerAdapter.ViewHolder>() {
+                          private var list: List<ExchangesItem>?,
+                          private val onClick: (exchangesItem: ExchangesItem, imageView: ImageView) -> Unit) : RecyclerView.Adapter<HomeRecyclerAdapter.ViewHolder>() {
 
     private var lastPosition = -1
 
@@ -61,37 +61,28 @@ class HomeRecyclerAdapter(private val context: Context?,
         private val tag2: Button = view.findViewById(R.id.tag2)
         private val tag3: Button = view.findViewById(R.id.tag3)
 
-        fun bind(job: Job) {
-            imageView.loadImage(job.logo, progressImage, false)
+        fun bind(exchange: ExchangesItem) {
+            imageView.loadImage(exchange.legend, progressImage, false)
 
             textViewTitle.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Html.fromHtml(job.position, Html.FROM_HTML_MODE_COMPACT)
+                Html.fromHtml(exchange.name, Html.FROM_HTML_MODE_COMPACT)
             } else {
-                Html.fromHtml(job.position)
+                Html.fromHtml(exchange.name)
             }
 
             textViewOverview.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Html.fromHtml(job.description, Html.FROM_HTML_MODE_COMPACT)
+                Html.fromHtml(exchange.legend, Html.FROM_HTML_MODE_COMPACT)
             } else {
-                Html.fromHtml(job.description)
+                Html.fromHtml(exchange.legend)
             }
 
-            job.tags?.forEachIndexed { index, s ->
-                if (index == 0) {
-                    tag1.text = s
-                }
-
-                if (index == 1) {
-                    tag2.text = s
-                }
-                if (index == 2) {
-                    tag3.text = s
-                }
-            }
+            tag1.text = exchange.high.toString()
+            tag2.text = exchange.low.toString()
+            tag3.text = exchange.trades.toString()
         }
     }
 
-    fun update(items: List<Job>?) {
+    fun update(items: List<ExchangesItem>?) {
         this.list = items
         notifyDataSetChanged()
     }

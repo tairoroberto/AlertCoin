@@ -1,7 +1,7 @@
 package com.trmamobilesolutions.alertcoin.detail.viewModel
 
 import android.arch.lifecycle.ViewModel
-import com.trmamobilesolutions.alertcoin.home.model.domain.Job
+import com.trmamobilesolutions.alertcoin.home.model.domain.Ticket
 import timber.log.Timber
 
 /**
@@ -9,8 +9,8 @@ import timber.log.Timber
  */
 class DetailViewModel : ViewModel() {
 
-    fun manipulateResponse(job: Job?) {
-        Timber.i("job ${job?.position}")
+    fun manipulateResponse(ticket: Ticket?) {
+        Timber.i("job ${ticket?.total?.trades}")
 
     }
 
