@@ -8,12 +8,6 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'io.fabric'
 
-apply from: "$rootDir${File.separatorChar}tools${File.separatorChar}linters.gradle"
-
-apply from: "$rootDir${File.separatorChar}tools${File.separatorChar}coverage.gradle"
-
-apply from: "$rootDir${File.separatorChar}tools${File.separatorChar}tests.gradle"
-
 android {
 
     compileSdkVersion rootProject.compileSdkVersion
@@ -46,7 +40,7 @@ android {
         debug {
             resValue "bool", "is_release", "false"
             minifyEnabled false
-            testCoverageEnabled false
+            testCoverageEnabled true
         }
 
         release {
@@ -55,7 +49,7 @@ android {
             shrinkResources true
             signingConfig signingConfigs.release
             debuggable false
-            testCoverageEnabled false
+            testCoverageEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -83,12 +77,8 @@ android {
     }
 
     lintOptions {
-        lintConfig file("$rootProject.rootDir${File.separatorChar}tools${File.separatorChar}linters${File.separatorChar}lint.xml")
         abortOnError false
-        ignoreWarnings true
         htmlReport true
-        htmlOutput file("$project.buildDir${File.separatorChar}reports${File.separatorChar}lint${File.separatorChar}lint-report.html")
-        disable 'InvalidPackage'
     }
 }
 
@@ -117,7 +107,7 @@ dependencies {
     implementation "com.android.support:design:${rootProject.supportLibs}"
     implementation "com.android.support:support-vector-drawable:${rootProject.supportLibs}"
     implementation "com.android.support:cardview-v7:${rootProject.supportLibs}"
-    implementation "com.google.android:flexbox:0.2.6"
+    implementation "com.google.android:flexbox:${rootProject.flexbox}"
     implementation "com.android.support:multidex:${rootProject.multidex}"
 
     // Firebase
@@ -149,7 +139,6 @@ dependencies {
 
     // Image libs
     implementation "com.squareup.picasso:picasso:$picasso"
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
 
     // Facebook Sthetho for debug conections
     implementation "com.facebook.stetho:stetho:${rootProject.stetho}"
@@ -178,10 +167,13 @@ dependencies {
     implementation "com.jakewharton.timber:timber:${rootProject.timber}"
 
     // Find bugs
-    implementation 'com.google.code.findbugs:jsr305:3.0.1'
-    implementation('com.google.api-client:google-api-client-android:1.22.0') {
+    implementation "com.google.code.findbugs:jsr305:${rootProject.findbugs}"
+    implementation("com.google.api-client:google-api-client-android:${rootProject.google_api_client_android}") {
         exclude module: 'httpclient'
     }
+
+    // MP Android chart
+    implementation "com.github.PhilJay:MPAndroidChart:${rootProject.MPAndroidChart}"
 
     // Test libs
     testImplementation "junit:junit:${rootProject.junit}"
@@ -217,7 +209,7 @@ dependencies {
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     })
     testImplementation "com.android.support.test.espresso:espresso-idling-resource:${rootProject.espresso}"
-    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:2.1.3"
+    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:${rootProject.uiautomator}"
 }
 
 apply plugin: 'com.google.gms.google-services'

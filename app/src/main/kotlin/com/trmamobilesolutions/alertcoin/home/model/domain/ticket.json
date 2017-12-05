@@ -1,0 +1,73 @@
+{
+  "total": {
+    "last": 42555.505259355,
+    "high": 42880,
+    "low": 40914.02,
+    "vol": 55.27311394,
+    "vwap": 42478.891967346,
+    "money": 2347940.6357561,
+    "trades": 942
+  },
+  "exchanges": [
+    {
+      "name": "ARN",
+      "legend": "Arena Bitcoin",
+      "last": 42812.36,
+      "open": 42449,
+      "high": 42812.36,
+      "low": 42000,
+      "vol": 0.61927191,
+      "vwap": 42646.91312869,
+      "money": 26410.035348808,
+      "trades": 17
+    },
+    {
+      "name": "B2U",
+      "legend": "BitcoinToYou",
+      "last": 42399.99,
+      "open": 42364.92,
+      "high": 42400,
+      "low": 42364.92,
+      "vol": 18.95860859,
+      "vwap": 42398.205865086,
+      "money": 803810.98991441,
+      "trades": 226
+    },
+    {
+      "name": "BIV",
+      "legend": "Bitinvest",
+      "last": 42699,
+      "open": 42699,
+      "high": 42699,
+      "low": 42699,
+      "vol": 0.02927469,
+      "vwap": 42699,
+      "money": 1249.99998831,
+      "trades": 1
+    },
+    {
+      "name": "FOX",
+      "legend": "FoxBit",
+      "last": 42400,
+      "open": 42400,
+      "high": 42400,
+      "low": 42400,
+      "vol": 0.0085,
+      "vwap": 42400,
+      "money": 360.4,
+      "trades": 1
+    },
+    {
+      "name": "WTM",
+      "legend": "Walltime",
+      "last": 42879,
+      "open": 42740,
+      "high": 42879,
+      "low": 42570,
+      "vol": 25.36707272,
+      "vwap": 42753.185353497,
+      "money": 1084523.1618738,
+      "trades": 488
+    }
+  ]
+}
