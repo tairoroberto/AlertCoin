@@ -10,64 +10,59 @@ import android.os.Parcelable
 data class ExchangesItem(
 
         @PrimaryKey
-        @ColumnInfo(name = "id")
-        var id: Int = 0,
-
-        @ColumnInfo(name = "high")
-        var high: Double = 0.0,
-
-        @ColumnInfo(name = "vol")
-        var vol: Double = 0.0,
-
-        @ColumnInfo(name = "last")
-        var last: Double = 0.0,
-
-        @ColumnInfo(name = "money")
-        var money: Double = 0.0,
-
-        @ColumnInfo(name = "low")
-        var low: Double = 0.0,
+        @ColumnInfo(name = "name")
+        var name: String = "",
 
         @ColumnInfo(name = "legend")
         var legend: String = "",
 
+        @ColumnInfo(name = "last")
+        var last: Double = 0.0,
+
+        @ColumnInfo(name = "open")
+        var open: Double = 0.0,
+
+        @ColumnInfo(name = "high")
+        var high: Double = 0.0,
+
+        @ColumnInfo(name = "low")
+        var low: Double = 0.0,
+
+        @ColumnInfo(name = "vol")
+        var vol: Double = 0.0,
+
+        @ColumnInfo(name = "money")
+        var money: Double = 0.0,
+
         @ColumnInfo(name = "vwap")
         var vwap: Double = 0.0,
 
-        @ColumnInfo(name = "name")
-        var name: String = "",
-
         @ColumnInfo(name = "trades")
-        var trades: Int = 0,
-
-        @ColumnInfo(name = "open")
-        var open: Double = 0.0) : Parcelable {
-
+        var trades: Int = 0) : Parcelable {
     constructor(parcel: Parcel) : this(
-            parcel.readInt(),
-            parcel.readDouble(),
-            parcel.readDouble(),
-            parcel.readDouble(),
-            parcel.readDouble(),
-            parcel.readDouble(),
+            parcel.readString(),
             parcel.readString(),
             parcel.readDouble(),
-            parcel.readString(),
-            parcel.readInt(),
-            parcel.readDouble())
+            parcel.readDouble(),
+            parcel.readDouble(),
+            parcel.readDouble(),
+            parcel.readDouble(),
+            parcel.readDouble(),
+            parcel.readDouble(),
+            parcel.readInt())
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeDouble(high)
-        parcel.writeDouble(vol)
-        parcel.writeDouble(last)
-        parcel.writeDouble(money)
-        parcel.writeDouble(low)
-        parcel.writeString(legend)
-        parcel.writeDouble(vwap)
         parcel.writeString(name)
-        parcel.writeInt(trades)
+        parcel.writeString(legend)
+        parcel.writeDouble(last)
         parcel.writeDouble(open)
+        parcel.writeDouble(high)
+        parcel.writeDouble(low)
+        parcel.writeDouble(vol)
+        parcel.writeDouble(money)
+        parcel.writeDouble(vwap)
+        parcel.writeInt(trades)
     }
 
     override fun describeContents(): Int {

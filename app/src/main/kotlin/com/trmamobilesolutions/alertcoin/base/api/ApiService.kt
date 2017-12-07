@@ -11,7 +11,7 @@ import retrofit2.http.Path
  */
 interface ApiService {
 
-    @GET("remote-dev+engineer+senior+digital-nomad-jobs.json")
+    @GET("report")
     fun getAll(): Flowable<Ticket>
 
     @GET("{path}")

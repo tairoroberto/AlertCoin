@@ -19,11 +19,11 @@ interface ExchangeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(jobs: List<ExchangesItem>?)
 
-    @Query("select * from exchanges where id = :id")
-    fun getByID(id: Int): Flowable<ExchangesItem>
+    @Query("select * from exchanges where name = :name")
+    fun getByID(name: String): Flowable<ExchangesItem>
 
-    @Query("select * from exchanges where id = :id")
-    fun loadByIdSync(id: Int): ExchangesItem
+    @Query("select * from exchanges where name = :name")
+    fun loadByIdSync(name: String): ExchangesItem
 
     @Query("DELETE FROM exchanges")
     fun deleteAll()

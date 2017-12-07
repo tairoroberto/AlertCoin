@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
  * Created by tairo on 11/12/17.
  */
 class Api(context: Context?) {
-    private val URL_BASE = "https://remoteok.io/"
+    private val URL_BASE = "http://app-bitalert.getup.io/api/bitcoin/"
     private var retrofit: Retrofit
 
     init {
