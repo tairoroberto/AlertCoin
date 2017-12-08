@@ -27,4 +27,9 @@
     <dimen name="dimen_70dp">70dp</dimen>
     <dimen name="dimen_10dp">10dp</dimen>
     <dimen name="dimen_22sp">22sp</dimen>
+
+    <dimen name="ttlm_default_padding">20dp</dimen>
+    <dimen name="ttlm_default_corner_radius">4dp</dimen>
+    <dimen name="ttlm_default_stroke_weight">1.3sp</dimen>
+    <dimen name="ttlm_default_elevation">2dp</dimen>
 </resources>

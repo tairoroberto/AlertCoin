@@ -3,11 +3,32 @@
 
     <color name="colorPrimary">#406180</color>
     <color name="colorPrimaryDark">#344E67</color>
-    <color name="colorAccent">#175258</color>
+    <color name="colorAccent">@color/white_87</color>
     <color name="colorPrimaryText">#1C1C1C</color>
     <color name="green_175258">#175258</color>
     <color name="green_2bbc9b">#2BBC9B</color>
     <color name="green_adfff1">#ADFFF1</color>
     <color name="white_f2feff">#F2FEFF</color>
     <color name="green_e6f9fa">#E6F9FA</color>
+
+    <color name="blue_2C5E9B">#2C5E9B</color>
+
+    <color name="pinkish_38">#61d9647f</color>
+    <color name="pinkish__12">#1ed9647f</color>
+    <color name="pinkish">#d9647f</color>
+    <color name="black_54">#8a000000</color>
+    <color name="black__87">#de000000</color>
+    <color name="black__38">#61000000</color>
+    <color name="light_peach">#fbc9ba</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white_two">#fafafa</color>
+    <color name="white_three">#eeeeee</color>
+    <color name="white_54">#8ad8d8d8</color>
+    <color name="white_87">#deffffff</color>
+    <color name="rose">#cc5f78</color>
+    <color name="pinkish__87">#ded9647f</color>
+    <color name="warm_grey">#979797</color>
+    <color name="white_54_two">#8affffff</color>
+    <color name="light_burgundy_87">#de8c3347</color>
 </resources>

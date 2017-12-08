@@ -16,6 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity
             android:name=".splash.SplashActivity"
             android:label="@string/app_name"
@@ -26,6 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".login.LoginActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".home.view.MainActivity"
                   android:label="@string/app_name"
@@ -39,6 +44,25 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".home.view.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".registro.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".login.LoginActivity" />
+        </activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
 
         <service android:name=".base.services.CustomFirebaseInstaceIdService">
             <intent-filter>

@@ -22,4 +22,29 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextStyleTooltip">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/light_burgundy_87</item>
+    </style>
+
+    <style name="ToolTipLayoutDefaultStyle">
+        <item name="ttlm_padding">20dp</item>
+        <item name="ttlm_strokeColor">@android:color/transparent</item>
+        <item name="ttlm_backgroundColor">@color/white</item>
+        <item name="ttlm_strokeWeight">@dimen/ttlm_default_stroke_weight</item>
+        <item name="ttlm_cornerRadius">@dimen/ttlm_default_corner_radius</item>
+        <item name="ttlm_arrowRatio">1.4</item>
+        <item name="ttlm_overlayStyle">@style/ToolTipOverlayDefaultStyle</item>
+        <item name="ttlm_elevation">@dimen/ttlm_default_elevation</item>
+        <item name="android:textAppearance">@style/TextStyleTooltip</item>
+    </style>
+
+    <style name="ToolTipOverlayDefaultStyle">
+        <!--<item name="android:color">?attr/colorAccent</item>-->
+        <item name="ttlm_repeatCount">99</item>
+        <item name="ttlm_duration">0</item>
+        <item name="android:alpha">0.0</item>
+        <item name="android:layout_margin">-20dp</item>
+    </style>
+
 </resources>

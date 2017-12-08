@@ -4,6 +4,19 @@
     <string name="share">share</string>
     <string name="donate">donate</string>
 
+    <string name="action_sign_in">Entrar</string>
+    <string name="permission_rationale">"Contaos são necessarios para auto preenchimento e validações."
+    </string>
+    <string name="permission_rationale_camera">"permissões d ecamera são necessarias para o reconhecimento de imagens."</string>
+
+    <string name="facebook_app_id">181238289089456</string>
+    <string name="fb_login_protocol_scheme">fb181238289089456</string>
+    <string name="login_with_facebook">Entrar com o Facebook</string>
+    <string name="email">email</string>
+    <string name="password">senha</string>
+    <string name="title_activity_register">Registrar-se</string>
+    <string name="error_field_required">Campo requerido</string>
+
     <string-array name="suggestions">
         <item>Walltime</item>
         <item>CoinBr</item>

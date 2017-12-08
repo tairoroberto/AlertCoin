@@ -32,8 +32,10 @@ buildscript {
     ext.rxjava = '2.1.0'
 
     ext.dagger = '2.13'
-    ext.stetho = '1.5.0'
     ext.picasso = '2.5.2'
+
+    ext.stetho = '1.5.0'
+    ext.facebook = '4.26.0'
 
     ext.MPAndroidChart = 'v3.0.3'
 

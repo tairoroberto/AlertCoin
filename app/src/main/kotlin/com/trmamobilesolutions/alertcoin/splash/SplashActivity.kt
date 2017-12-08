@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.Crashlytics
 import com.trmamobilesolutions.alertcoin.R
-import com.trmamobilesolutions.alertcoin.home.view.MainActivity
+import com.trmamobilesolutions.alertcoin.login.LoginActivity
 import io.fabric.sdk.android.Fabric
 import org.jetbrains.anko.startActivity
 import timber.log.Timber
@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
         Timer().schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
-                    startActivity<MainActivity>()
+                    startActivity<LoginActivity>()
                     finish()
                 }
             }
